@@ -5,32 +5,33 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { useRouter } from "next/navigation"
+import { ChevronRight } from "lucide-react"
 
-export default function ProjectProfileForm() {
-  const router = useRouter()
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    router.push("/project-submitted")
-  }
-
+export function ProjectAForm() {
   return (
     <div className="max-w-2xl mx-auto bg-card p-6 rounded-lg shadow-sm border">
-      <h2 className="text-2xl font-bold mb-6">Project Profile</h2>
-      <form className="grid gap-6" onSubmit={handleSubmit}>
+      <div className="flex items-start gap-4 mb-6">
+        <div className="flex-1">
+          <h2 className="text-2xl font-bold">Project A</h2>
+          <p className="text-sm text-muted-foreground mt-2">
+            {"If person login from Depart A show only depart a approved projects"}
+          </p>
+        </div>
+      </div>
+
+      <form className="grid gap-6">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
-          <Label htmlFor="department-name" className="text-right">
-            Department / Unit Name
+          <Label htmlFor="select-project" className="text-right">
+            Project A
           </Label>
           <Select>
-            <SelectTrigger id="department-name">
-              <SelectValue placeholder="Select Department" />
+            <SelectTrigger id="select-project">
+              <SelectValue placeholder="Select your project" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="dept-a">Department A</SelectItem>
-              <SelectItem value="dept-b">Department B</SelectItem>
-              <SelectItem value="dept-c">Department C</SelectItem>
+              <SelectItem value="project-1">Project Alpha</SelectItem>
+              <SelectItem value="project-2">Project Beta</SelectItem>
+              <SelectItem value="project-3">Project Gamma</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -46,28 +47,28 @@ export default function ProjectProfileForm() {
           <Label htmlFor="project-name" className="text-right">
             Project Name
           </Label>
-          <Input id="project-name" placeholder="Enter project name" />
+          <Input id="project-name" placeholder="Text Input" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-4">
           <Label htmlFor="project-description" className="text-right pt-2">
             Project description
           </Label>
-          <Textarea id="project-description" placeholder="Enter project description" rows={4} />
+          <Textarea id="project-description" placeholder="Text Input" rows={4} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <Label htmlFor="owner-name" className="text-right">
             Project Owner Name
           </Label>
-          <Input id="owner-name" placeholder="Enter owner name" />
+          <Input id="owner-name" placeholder="Text Input" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <Label htmlFor="owner-email" className="text-right">
             Project Owner Email
           </Label>
-          <Input id="owner-email" type="email" placeholder="Enter owner email" />
+          <Input id="owner-email" type="email" placeholder="Text Input" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
@@ -79,9 +80,8 @@ export default function ProjectProfileForm() {
               <SelectValue placeholder="Select Approver Name" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="approver-1">John Doe</SelectItem>
-              <SelectItem value="approver-2">Jane Smith</SelectItem>
-              <SelectItem value="approver-3">Alice Johnson</SelectItem>
+              <SelectItem value="approver-1">Approver One</SelectItem>
+              <SelectItem value="approver-2">Approver Two</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -104,20 +104,14 @@ export default function ProjectProfileForm() {
           </div>
         </div>
 
-        <div className="flex justify-end gap-4 mt-4">
-          <Button variant="outline" type="button">
-            Cancel
+        <div className="flex justify-end mt-4">
+          <Button type="submit" className="flex items-center gap-2">
+            NEXT <ChevronRight className="h-4 w-4" />
           </Button>
-          <Button type="submit">Submit</Button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4 mt-6 pt-6 border-t">
-          <Label htmlFor="application-id" className="text-right">
-            Application ID
-          </Label>
-          <Input id="application-id" placeholder="Auto-generated ID" readOnly className="bg-muted" />
         </div>
       </form>
     </div>
   )
 }
+
+
